@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\FinSharkAPI",
+    "\\FinSharkAPI\\FinSharkAPI",
+    "\\FinSharkAPI\\FinSharkAPI\\FinSharkAPI",
+    "\\FinSharkAPI\\FinSharkAPI\\FinSharkAPI\\Controllers"
+  ],
+  "SelectedNode": "\\FinSharkAPI\\FinSharkAPI\\FinSharkAPI\\Controllers\\StockController.cs",
+  "PreviewInSolutionExplorer": false
+}
