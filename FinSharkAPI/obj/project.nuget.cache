@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HQRPTXKjtHhZH2LdXebAXJEUGebPAFQ6+j47nN/GB57Qi1GerS1Q8AmepTGjkDdXGJRoD/xAEc5KQ3wPyXZptA==",
+  "dgSpecHash": "2hhxipf4VZkXlyAOHcHjLvaP0tiNGrhCB8z7G5l3ARbgGyhULOqKoxCacJgSYm0lDcZtsxJHf5J80mSTL0Nuvg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI\\FinSharkAPI.csproj",
+  "projectFilePath": "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\avahm\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\avahm\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI\\FinSharkAPI.csproj": {}
+    "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI\\FinSharkAPI.csproj": {
+    "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI\\FinSharkAPI.csproj",
+        "projectUniqueName": "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI.csproj",
         "projectName": "FinSharkAPI",
-        "projectPath": "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI\\FinSharkAPI.csproj",
+        "projectPath": "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI.csproj",
         "packagesPath": "C:\\Users\\avahm\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\FinSharkAPI\\obj\\",
+        "outputPath": "C:\\Users\\avahm\\Desktop\\c#\\FinShark-fullstack\\FinSharkAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\avahm\\AppData\\Roaming\\NuGet\\NuGet.Config",
