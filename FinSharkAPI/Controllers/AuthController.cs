@@ -18,6 +18,18 @@ namespace FinSharkAPI.Controllers
             _authService = authService;
         }
 
+		[HttpPost("login")]
+		public async Task<IActionResult> Login(LoginDto loginDto)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+
+			var userDto = await _authService.Login(loginDto);
+			if (userDto == null) return BadRequest(ModelState);
+			return Ok(userDto);
+
+		}
+
         [HttpPost("register")]
 		public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
 		{
