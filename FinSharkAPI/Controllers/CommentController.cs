@@ -1,6 +1,10 @@
 ﻿using FinSharkAPI.DTO.Comment;
+using FinSharkAPI.Extensions;
+using FinSharkAPI.Helpers;
+using FinSharkAPI.Models;
 using FinSharkAPI.Repositories.Contracts;
 using FinSharkAPI.Services.Contracts;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinSharkAPI.Controllers
@@ -10,19 +14,19 @@ namespace FinSharkAPI.Controllers
 	public class CommentController : ControllerBase
 	{
 		private readonly ICommentService _commentService;
-		private readonly IStockRepository _stockRepository;
-        public CommentController(ICommentService commentService, IStockRepository stockRepository)
+		private readonly UserManager<User> _userManager;
+        public CommentController(ICommentService commentService, UserManager<User> userManager)
         {
 			_commentService = commentService;
-			_stockRepository = stockRepository;
+			_userManager = userManager;
         }
 
         [HttpGet]
-		public async Task<IActionResult> GetAll()
+		public async Task<IActionResult> GetAll([FromQuery] CommentQueryObject commentQueryObject)
 		{
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
-			var commentDtos = await _commentService.GetAllCommentsAsync();
+			var commentDtos = await _commentService.GetAllCommentsAsync(commentQueryObject);
 			return Ok(commentDtos);
 		}
 
@@ -36,13 +40,14 @@ namespace FinSharkAPI.Controllers
 			return Ok(commentDto);
 		}
 
-		[HttpPost("{stockId:int}")]
-		public async Task<IActionResult> Create([FromRoute] int stockId, CreateCommentDto createCommentDto)
+		[HttpPost("{symbol:alpha}")]
+		public async Task<IActionResult> Create([FromRoute] string symbol, CreateCommentDto createCommentDto)
 		{
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
-			if (!await _stockRepository.isStockExists(stockId)) return BadRequest("Stock doesn't exist");
-			var commentDto = await _commentService.CreateCommentAsync(createCommentDto, stockId);
+			var username = User.GetUserName();
+			var user = await _userManager.FindByNameAsync(username);
+			var commentDto = await _commentService.CreateCommentAsync(createCommentDto, symbol, user.Id);
 			return CreatedAtAction(nameof(GetById), new { id = commentDto.Id }, commentDto);
 		}
 

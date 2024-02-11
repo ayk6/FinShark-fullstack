@@ -18,7 +18,7 @@ namespace FinSharkAPI.Repositories
 
 		public async Task<IEnumerable<Stock>> GetAllStocksAsync()
 		{
-			return await _context.Stocks.Include(c=> c.Comments).ToListAsync();
+			return await _context.Stocks.Include(s => s.Comments).ThenInclude(s => s.User).ToListAsync();
 		}
 
 		public async Task<Stock> CreateStockAsync(Stock stock)
@@ -36,7 +36,7 @@ namespace FinSharkAPI.Repositories
 
 		public async Task<Stock?> GetStockByIdAsync(int id)
 		{
-			return await _context.Stocks.Include(c => c.Comments).FirstOrDefaultAsync(x => x.Id == id);
+			return await _context.Stocks.Include(s => s.Comments).ThenInclude(s => s.User).FirstOrDefaultAsync(x => x.Id == id);
 		}
 
 		public async Task<Stock> UpdateStockAsync(Stock stock)

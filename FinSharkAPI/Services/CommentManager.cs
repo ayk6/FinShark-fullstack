@@ -1,25 +1,33 @@
 ﻿using FinSharkAPI.DTO.Comment;
 using FinSharkAPI.DTO.Stock;
+using FinSharkAPI.Helpers;
 using FinSharkAPI.Mappers;
+using FinSharkAPI.Models;
 using FinSharkAPI.Repositories;
 using FinSharkAPI.Repositories.Contracts;
 using FinSharkAPI.Services.Contracts;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinSharkAPI.Services
 {
 	public class CommentManager : ICommentService
 	{
 		private readonly ICommentRepository _commentRepository;
-
-        public CommentManager(ICommentRepository commentRepository)
+		private readonly IStockRepository _stockRepository;
+        public CommentManager(ICommentRepository commentRepository, IStockRepository stockRepository)
         {
             _commentRepository = commentRepository;
+			_stockRepository = stockRepository;
         }
 
-		public async Task<CommentDto> CreateCommentAsync(CreateCommentDto createCommentDto, int stockId)
+		public async Task<CommentDto> CreateCommentAsync(CreateCommentDto createCommentDto, string symbol, string userId)
 		{
-			var comment = createCommentDto.toCommentFromCreate(stockId);
+			var stock = await _stockRepository.GetStockBySymbolAsync(symbol);
+			if (stock == null) throw new Exception("stock doesn't exist");
+	
+			
+			var comment = createCommentDto.toCommentFromCreate(stock.Id, userId);
 			var createdComment = await _commentRepository.CreateAsync(comment);
 			return createdComment.toCommentDto();
 		}
@@ -33,10 +41,24 @@ namespace FinSharkAPI.Services
 			}
 		}
 
-		public async Task<IEnumerable<CommentDto>> GetAllCommentsAsync()
+
+		public async Task<IEnumerable<CommentDto>> GetAllCommentsAsync(CommentQueryObject commentQueryObject)
 		{
 			var comments = await _commentRepository.GetAllAsync();
-			return comments.Select(c => c.toCommentDto());
+
+			if (!string.IsNullOrWhiteSpace(commentQueryObject.Symbol))
+			{
+				comments = comments.Where(c => c.Stock != null && c.Stock.Symbol == commentQueryObject.Symbol);
+			}
+			if (commentQueryObject.IsDescending == true)
+			{
+				comments = comments.OrderByDescending(c => c.CreatedOn);
+			}
+
+			return comments
+				.Where(c => c != null)
+				.Select(c => c.toCommentDto())
+				.ToList();
 		}
 
 		public async Task<CommentDto> GetCommentAsync(int id)

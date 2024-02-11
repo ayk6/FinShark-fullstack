@@ -14,17 +14,20 @@ namespace FinSharkAPI.Mappers
 				Title = commentModel.Title,
 				Content = commentModel.Content,
 				CreatedOn = commentModel.CreatedOn,
-				StockId = commentModel.StockId
+				StockId = commentModel.StockId,
+				CreatedBy = commentModel.User.UserName
+
 			};
 		}
 
-		public static Comment toCommentFromCreate(this CreateCommentDto createCommentDto, int stockId)
+		public static Comment toCommentFromCreate(this CreateCommentDto createCommentDto, int stockId, string userId)
 		{
 			return new Comment
 			{
 				Title = createCommentDto.Title,
 				Content = createCommentDto.Content,
-				StockId = stockId
+				StockId = stockId,
+				UserId = userId
 			};
 		}
 

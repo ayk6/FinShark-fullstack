@@ -28,12 +28,12 @@ namespace FinSharkAPI.Repositories
 
 		public async Task<IEnumerable<Comment>> GetAllAsync()
         {
-            return await _context.Comments.ToListAsync();
-        }
+            return await _context.Comments.Include(c => c.User).Include(c => c.Stock).ToListAsync();
+		}
 
 		public async Task<Comment?> GetByIdAsync(int id)
 		{
-			return await _context.Comments.FirstOrDefaultAsync(x => x.Id == id);
+			return await _context.Comments.Include(c => c.User).FirstOrDefaultAsync(c => c.Id == id);
 		}
 
 		public async Task<Comment?> UpdateAsync(Comment commentModel)

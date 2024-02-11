@@ -41,7 +41,7 @@ namespace FinSharkAPI.Services
 
 			stocks = stocks.Skip(skipNumber).Take(queryObject.PageSize).ToList();
 
-			return stocks.Select(s => s.toStockDto());
+			return stocks.Select(s => s.toStockDto()).ToList();
 		}
 
 		public async Task<StockDto> GetStockByIdAsync(int id)
