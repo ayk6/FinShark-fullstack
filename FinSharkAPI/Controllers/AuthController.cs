@@ -1,5 +1,4 @@
 ﻿using FinSharkAPI.DTO.Auth;
-using FinSharkAPI.Migrations;
 using FinSharkAPI.Models;
 using FinSharkAPI.Services.Contracts;
 using Microsoft.AspNetCore.Http;

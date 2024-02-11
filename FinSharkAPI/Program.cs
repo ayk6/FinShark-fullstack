@@ -96,6 +96,8 @@ builder.Services.AddScoped<ICommentService, CommentManager>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IAuthService, AuthManager>();
 builder.Services.AddScoped<ITokenService, TokenManager>();
+builder.Services.AddScoped<IPortfolioService, PortfolioManager>();
+builder.Services.AddScoped<IPortfolioRepository, Portfoliorepository>();
 
 var app = builder.Build();
 

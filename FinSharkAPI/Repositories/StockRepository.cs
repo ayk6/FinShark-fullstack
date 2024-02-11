@@ -34,7 +34,7 @@ namespace FinSharkAPI.Repositories
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task<Stock> GetStockByIdAsync(int id)
+		public async Task<Stock?> GetStockByIdAsync(int id)
 		{
 			return await _context.Stocks.Include(c => c.Comments).FirstOrDefaultAsync(x => x.Id == id);
 		}
@@ -49,6 +49,11 @@ namespace FinSharkAPI.Repositories
 		public Task<bool> isStockExists(int id)
 		{
 			return _context.Stocks.AnyAsync(s => s.Id == id);
+		}
+
+		public async Task<Stock?> GetStockBySymbolAsync(string symbol)
+		{
+			return await _context.Stocks.FirstOrDefaultAsync(s => s.Symbol == symbol);
 		}
 	}
 }

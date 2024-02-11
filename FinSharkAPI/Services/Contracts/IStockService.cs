@@ -12,5 +12,6 @@ namespace FinSharkAPI.Services.Contracts
 		Task<StockDto> CreateStockAsync(CreateStockDto createStockDto);
 		Task<StockDto> UpdateStockAsync(int id, UpdateStockDto updateStockDto);
 		Task DeleteStockAsync(int id);
+		Task<StockDto> GetBySymbolAsync(string symbol);
 	}
 }

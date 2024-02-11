@@ -78,5 +78,11 @@ namespace FinSharkAPI.Services
 				await _stockRepository.DeleteStockAsync(stockToDelete);
 			}
 		}
+
+		public async Task<StockDto> GetBySymbolAsync(string symbol)
+		{
+			var stock = await _stockRepository.GetStockBySymbolAsync(symbol);
+			return stock.toStockDto();
+		}
 	}
 }
