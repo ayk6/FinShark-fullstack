@@ -4,7 +4,12 @@ type Props = {}
 
 const CardList = (props: Props) => {
     return (
-        <div>CardList</div>
+        <>
+            <h1>No results!</h1>
+            <p className="mb-3 mt-3 text-xl font-semibold text-center md:text-xl">
+                No results!
+            </p>
+        </>
     )
 }
 

@@ -1,13 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+
+import { ToastContainer } from 'react-toastify';
 import './App.css';
-import Card from './Components/Card/Card';
+import "react-toastify/dist/ReactToastify.css"
+import NavBar from './Components/NavBar/NavBar';
+import { Outlet } from 'react-router';
+import { UserProvider } from './Context/useAuth';
 
 function App() {
   return (
-    <div className="App">
-      <Card companyName='Tesla' ticker='TSLA' price={150} />
-    </div>
+    <UserProvider>
+      <NavBar />
+      <Outlet />
+      <ToastContainer />
+    </UserProvider>
   );
 }
 
