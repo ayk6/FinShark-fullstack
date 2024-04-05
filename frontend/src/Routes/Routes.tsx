@@ -3,6 +3,9 @@ import App from "../App";
 import HomePage from "../Pages/HomePage/HomePage";
 import SearchPage from "../Pages/SearchPage/SearchPage";
 import CompanyPage from "../Pages/CompanyPage/CompanyPage";
+import LoginPage from "../Pages/LoginPage/LoginPage";
+import RegisterPage from "../Pages/Registerpage/RegisterPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -15,11 +18,21 @@ export const router = createBrowserRouter([
             },
             {
                 path: "search",
-                element: <SearchPage />
+                element:
+                    <ProtectedRoute>
+                        <SearchPage />
+                    </ProtectedRoute>
             },
             {
                 path: "company/:ticker",
                 element: <CompanyPage />
+            },
+            {
+                path: "login",
+                element: <LoginPage />
+            }, {
+                path: "register",
+                element: <RegisterPage />
             }
         ]
     }
